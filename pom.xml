@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sz.bewater</groupId>
+    <artifactId>practice</artifactId>
+    <version>1.0.0</version>
+    <name>practice</name>
+    <description>A sample Spring Boot project</description>
+    <modules>
+        <module>daily</module>
+    </modules>
+
+    <!-- 使用Spring Boot的父POM -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.4</version> <!-- 请使用最新的Spring Boot版本 -->
+    </parent>
+
+
+    <!-- 项目的依赖项 -->
+    <dependencies>
+        <!-- Spring Boot核心依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Web依赖（用于构建Web应用程序） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- 添加其他依赖项，如数据库访问、安全、测试等，根据项目需求自行添加 -->
+
+    </dependencies>
+
+    <!-- 打包方式为JAR，可选的还有WAR等 -->
+    <packaging>pom</packaging>
+
+    <!-- 插件配置 -->
+    <build>
+        <plugins>
+            <!-- Spring Boot插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 配置Spring Boot属性，如端口号等 -->
+    <properties>
+        <java.version>1.8</java.version> <!-- 你的JDK版本 -->
+    </properties>
+
+</project>
