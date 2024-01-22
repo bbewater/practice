@@ -4,10 +4,13 @@ package com.sz.bewater.practice;
 import com.google.common.collect.Range;
 import com.google.common.collect.RangeSet;
 import com.google.common.collect.TreeRangeSet;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @SpringBootTest
 public class RangeSetTest {
@@ -35,5 +38,40 @@ public class RangeSetTest {
             System.out.println(range);
         }
 
+
+
+        RangeSet<Integer> mergeRangeSet = TreeRangeSet.create();
+        mergeRangeSet.add(Range.closed(1, 5));
+        mergeRangeSet.add(Range.closedOpen(3, 8));
+        mergeRangeSet.add(Range.closedOpen(10, 12));
+
+        System.out.println("Before merging: " + mergeRangeSet); //[1,8),[10,12) RangeSet在add的时候就自动完成了重复合并了
+
+        // 合并相邻的范围  不需要了  不要手动合并
+        mergeAdjacentRanges(mergeRangeSet);
+
+        System.out.println("After merging: " + mergeRangeSet);
+
+    }
+
+    private static void mergeAdjacentRanges(RangeSet<Integer> rangeSet) {
+        // 将范围集中的范围按照起始值进行排序
+        List<Range<Integer>> ranges = Lists.newArrayList(rangeSet.asRanges()).stream().sorted((r1, r2) -> {
+            return r1.lowerEndpoint().compareTo(r2.lowerEndpoint());
+        }).collect(Collectors.toList());
+
+        // 遍历并合并相邻的范围
+        for (int i = 0; i < ranges.size() - 1; i++) {
+            Range<Integer> currentRange = ranges.get(i);
+            Range<Integer> nextRange = ranges.get(i + 1);
+
+            if (currentRange.isConnected(nextRange)) { //isConnected是否以下一个区间作为开始
+                // 如果相邻，则合并范围
+                Range<Integer> mergedRange = currentRange.span(nextRange); //span合并
+                rangeSet.remove(currentRange);
+                rangeSet.remove(nextRange);
+                rangeSet.add(mergedRange);
+            }
+        }
     }
 }
