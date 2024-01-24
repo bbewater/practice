@@ -8,6 +8,7 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -56,9 +57,7 @@ public class RangeSetTest {
 
     private static void mergeAdjacentRanges(RangeSet<Integer> rangeSet) {
         // 将范围集中的范围按照起始值进行排序
-        List<Range<Integer>> ranges = Lists.newArrayList(rangeSet.asRanges()).stream().sorted((r1, r2) -> {
-            return r1.lowerEndpoint().compareTo(r2.lowerEndpoint());
-        }).collect(Collectors.toList());
+        List<Range<Integer>> ranges = Lists.newArrayList(rangeSet.asRanges()).stream().sorted(Comparator.comparing(Range::lowerEndpoint)).collect(Collectors.toList());
 
         // 遍历并合并相邻的范围
         for (int i = 0; i < ranges.size() - 1; i++) {
