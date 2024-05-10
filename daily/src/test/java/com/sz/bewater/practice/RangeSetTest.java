@@ -53,6 +53,12 @@ public class RangeSetTest {
 
         System.out.println("After merging: " + mergeRangeSet);
 
+        RangeSet<Integer> treeRangeSet = TreeRangeSet.create();
+        treeRangeSet.add(Range.closed(1, 5));
+        treeRangeSet.add(Range.closed(7, 8));
+        treeRangeSet.add(Range.closed(10, 12));
+        System.out.println("complement---"+treeRangeSet.complement());
+
     }
 
     private static void mergeAdjacentRanges(RangeSet<Integer> rangeSet) {
@@ -73,4 +79,38 @@ public class RangeSetTest {
             }
         }
     }
+    private static void handleIntersection(RangeSet<Integer> originalRangeSet, RangeSet<Integer> resultRangeSet, Range<Integer> newRange) {
+        for (Range<Integer> range : originalRangeSet.asRanges()) {
+            if (range.isConnected(newRange)) {
+                // Add the complement of the intersection to the resultRangeSet
+                if (range.lowerEndpoint() < newRange.lowerEndpoint()) {
+                    resultRangeSet.add(Range.singleton(range.lowerEndpoint()));
+                    if (newRange.lowerEndpoint() <= range.upperEndpoint()) {
+                        resultRangeSet.add(Range.closed(newRange.lowerEndpoint(), Math.min(newRange.upperEndpoint(), range.upperEndpoint())));
+                    }
+                }
+                if (range.upperEndpoint() > newRange.upperEndpoint()) {
+                    resultRangeSet.add(Range.singleton(Math.max(newRange.upperEndpoint() + 1, range.lowerEndpoint())));
+                }
+            } else {
+                // Non-intersecting ranges are added directly to the resultRangeSet
+                resultRangeSet.add(range);
+            }
+        }
+    }
+
+    private static void splitAndAdd(RangeSet<Integer> resultRangeSet, Range<Integer> range) {
+        // Check if the range is not a point
+        if (!range.isEmpty() && range.lowerEndpoint() < range.upperEndpoint()) {
+            // Add the first half of the range
+            resultRangeSet.add(Range.closed(range.lowerEndpoint(), range.lowerEndpoint() + (range.upperEndpoint() - range.lowerEndpoint()) / 2));
+
+            // Add the second half of the range
+            resultRangeSet.add(Range.closed(range.lowerEndpoint() + (range.upperEndpoint() - range.lowerEndpoint()) / 2 + 1, range.upperEndpoint()));
+        } else {
+            // Add the single point range
+            resultRangeSet.add(range);
+        }
+    }
+
 }

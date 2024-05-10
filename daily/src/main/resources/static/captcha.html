@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Captcha Demo</title>
+  <style>
+    /* 简单的样式，确保图片居中显示 */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    img {
+      cursor: pointer;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+<!-- 验证码图片 -->
+<img id="captchaImage" src="http://192.168.130.97:10001/plat/auth/getCaptcha" alt="Captcha" title="点击刷新验证码">
+
+<script>
+  // 当点击图片时，刷新验证码
+  document.getElementById('captchaImage').addEventListener('click', function() {
+    // 添加随机参数防止浏览器缓存影响
+    this.src = '/auth/getCaptcha?rand=' + Math.random();
+  });
+</script>
+</body>
+</html>
