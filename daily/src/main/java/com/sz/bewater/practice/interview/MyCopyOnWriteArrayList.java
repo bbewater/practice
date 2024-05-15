@@ -5,7 +5,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 
 public class MyCopyOnWriteArrayList {
-
+//保证多线程情况下 并发写的线程安全
 
     public static void main(String[] args) throws InterruptedException {
 //        源码如下:
