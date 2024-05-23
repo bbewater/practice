@@ -1,6 +1,7 @@
 package com.sz.bewater.practice.interview;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class MyLinkedList {
 
@@ -16,5 +17,10 @@ public class MyLinkedList {
         linkedList.forEach(System.out::println);
         System.out.println(linkedList.getFirst());
         System.out.println(linkedList.getLast());
+        Queue queue = new LinkedList();
+//        Object remove = queue.remove();
+        Object poll = queue.poll();
+        System.out.println(poll);
+//        remove和poll都会移除队列中第一个元素 并返回  但是当没有时remove会报错：NoSuchElementException  而poll不会 返回null
     }
 }
