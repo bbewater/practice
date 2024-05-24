@@ -22,7 +22,10 @@ public class MyHashMap {
         //        hashMap的length为2的次幂的好处 h&length-1  等价于h%length  而且位与&比取模更高效
 //        为了计算key在Node[]上的位置 一般都是hash来对数组长度length取模 但是取模本身不高效  涉及将length设计成2的次幂 是为了将取模运算优化成位与运算
 //        hash&length-1  详见MyOperator.java
-        HashMap<String,String> map = new HashMap<>();
+
+//        当初始容量并不是2的次幂的时候 hashMap里面的tableSizeFor方法会自动帮我们把初始容量变成>=最接近我们设置的初始容量的2的次幂的数
+//        例如设置为10 就会变成16
+        HashMap<String,String> map = new HashMap<>(32, 0.75f);
         System.out.println(map.put("a", "1"));
         System.out.println(map.put("a", "2"));  //put方法 返回的是旧值 1
 
