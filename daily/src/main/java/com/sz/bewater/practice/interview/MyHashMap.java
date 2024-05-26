@@ -7,7 +7,7 @@ public class MyHashMap {
 
 
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
-        //容量指的是hashMap中数组的大小（初始值为16） Node<K,V>[] table; 也就是hash桶   大小指的是Node元素的总和
+        //容量指的是hashMap中数组的大小（初始值为16） 2的幂 Node<K,V>[] table; 也就是hash桶   大小指的是Node元素的总和
 //        扩容时重新计算新数组的下标(resize()) 要么新下标=旧下标  要么 新下标=就下标+旧数组的容量
 
 //        1.8之前  数组(table)+链表(Node)   1.8之后  数组(table)+链表(Node)+红黑树(TreeNode)
