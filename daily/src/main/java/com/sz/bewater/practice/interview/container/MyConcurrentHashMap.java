@@ -1,4 +1,4 @@
-package com.sz.bewater.practice.interview;
+package com.sz.bewater.practice.interview.container;
 
 import java.util.concurrent.ConcurrentHashMap;
 

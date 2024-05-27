@@ -1,4 +1,4 @@
-package com.sz.bewater.practice.interview;
+package com.sz.bewater.practice.interview.juc;
 
 public class MyThreadLocal {
     private static ThreadLocal<String> threadLocal = new ThreadLocal<>();

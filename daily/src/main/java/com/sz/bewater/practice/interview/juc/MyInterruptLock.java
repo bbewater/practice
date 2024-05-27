@@ -1,4 +1,4 @@
-package com.sz.bewater.practice.interview;
+package com.sz.bewater.practice.interview.juc;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
@@ -9,7 +9,7 @@ public class MyInterruptLock {
     private static Thread thread2;
 
     //lock相较于synchronized，lock可以中断获取锁(等待获取锁的时候被中断)，而synchronized不行
-//    lock.interrupt();  效果相当于lock.tryLock(timeout)  一定时间获取不到 我就不获取了  避免线程长时间阻塞 可以去处理别的任务
+//    lock.lockInterruptibly();   表示我这次获取锁的行为可被中断  搭配thread.interrupt使用   避免线程长时间阻塞 可以去处理别的任务
 
 
     public static void main(String[] args) {

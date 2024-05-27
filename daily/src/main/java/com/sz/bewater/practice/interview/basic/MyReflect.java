@@ -1,11 +1,13 @@
-package com.sz.bewater.practice.interview;
+package com.sz.bewater.practice.interview.basic;
+
+import com.sz.bewater.practice.interview.basic.MyOperator;
 
 public class MyReflect {
 
 
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         //Class.forName
-        Class<?> class1 = Class.forName("com.sz.bewater.practice.interview.MyOperator");
+        Class<?> class1 = Class.forName("com.sz.bewater.practice.interview.basic.MyOperator");
         //.class
         Class<MyOperator> class2 = MyOperator.class;
         MyOperator myOperator1 = class2.newInstance();
@@ -14,7 +16,7 @@ public class MyReflect {
         Class<? extends MyOperator> class3 = myOperator.getClass();
         //classLoader 获取上下文类加载器
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        Class<?> class4 = classLoader.loadClass("com.sz.bewater.practice.interview.MyOperator");
+        Class<?> class4 = classLoader.loadClass("com.sz.bewater.practice.interview.basic.MyOperator");
 //        设置线程上下文加载器  可以打破双亲委派模型
 //        Thread.currentThread().setContextClassLoader(classLoader);
     }

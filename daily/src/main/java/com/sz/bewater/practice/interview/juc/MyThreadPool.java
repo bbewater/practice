@@ -1,4 +1,4 @@
-package com.sz.bewater.practice.interview;
+package com.sz.bewater.practice.interview.juc;
 
 public class MyThreadPool {
 

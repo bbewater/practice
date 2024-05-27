@@ -1,4 +1,4 @@
-package com.sz.bewater.practice.interview;
+package com.sz.bewater.practice.interview.juc;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;

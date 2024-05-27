@@ -1,4 +1,4 @@
-package com.sz.bewater.practice.interview;
+package com.sz.bewater.practice.interview.container;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
