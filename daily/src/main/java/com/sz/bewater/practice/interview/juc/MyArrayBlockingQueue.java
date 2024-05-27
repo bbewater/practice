@@ -8,6 +8,8 @@ public class MyArrayBlockingQueue {
 //    底层为数组的有界队列
 //    阻塞发生在两个地方 put和take  当阻塞队列已满  put会被阻塞 直到阻塞队列元素减少
 //    当阻塞队列为空 take会被阻塞  直到阻塞队列有了新元素
+
+//    阻塞队列常用于生产者和消费者模型  阻塞队列正好是生产者存放元素  消费者消费元素的容器
     private static final BlockingQueue<Integer> arrayBlockingQueue = new ArrayBlockingQueue<>(5);
 
 
