@@ -1,0 +1,23 @@
+put:
+将元素放入队列，如果队列已满，则等待队列有空间。
+示例：queue.put(element);
+阻塞操作
+
+take:
+从队列中取出元素，如果队列为空，则等待队列中有可用元素。
+示例：Element element = queue.take();
+阻塞操作
+
+offer:
+将元素放入队列，如果队列已满，则返回 false，不会等待。
+可以指定超时时间，若在指定时间内队列仍然已满，则返回 false。
+示例：boolean success = queue.offer(element);
+非阻塞操作
+示例带超时时间：boolean success = queue.offer(element, 2, TimeUnit.SECONDS);
+
+poll:
+从队列中取出元素，如果队列为空，则返回 null，不会等待。
+可以指定超时时间，若在指定时间内仍然没有可用元素，则返回 null。
+示例：Element element = queue.poll();
+非阻塞操作
+示例带超时时间：Element element = queue.poll(2, TimeUnit.SECONDS);
