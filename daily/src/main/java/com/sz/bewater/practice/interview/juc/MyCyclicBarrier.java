@@ -13,6 +13,7 @@ public class MyCyclicBarrier {
     public static void main(String[] args) {
         AtomicInteger atomicInteger = new AtomicInteger(1);
 //        每当所有线程都调用 cyclicBarrier.await() 并通过屏障时，回调函数都会被调用一次。
+//        3指的是参与同步的线程个数 需要三个线程都要到达屏障点才行
         CyclicBarrier cyclicBarrier = new CyclicBarrier(3,() ->{
             System.out.println("所有学生完成阶段"+atomicInteger.getAndIncrement()+"学习");     //CyclicBarrier 支持回调 这也是和countDownLatch也不同点 countDownLatch没有回调这种说法
         });
