@@ -17,10 +17,17 @@ public class MyFixedThreadPool {
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(2);
         for (int i = 0; i < 5; i++) {
             Future future = fixedThreadPool.submit(new Task());
-            System.out.println(future.get());
+               System.out.println(future.get()); //get是阻塞的 会影响到后面的awaitTermination判断
         }
         //关闭线程池
         fixedThreadPool.shutdown();
+
+//        if (!fixedThreadPool.awaitTermination(10,TimeUnit.SECONDS)){
+//            //shutdown会拒绝新任务 但是不会终止正在运行的任务  这里最多等待30s 看任务是否全部处理完 并且线程池进入TERMINATED
+//            //假如仍然没有 则强制关闭线程池 调用shutdownNow()方法
+//            fixedThreadPool.shutdownNow();
+//        }
+//        System.out.println("all task is complete");
 
 
     }
@@ -31,6 +38,7 @@ public class MyFixedThreadPool {
 
         @Override
         public Object call() throws Exception {
+//            TimeUnit.SECONDS.sleep(5);
             return Thread.currentThread().getName()+"执行完毕";
         }
     }
