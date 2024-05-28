@@ -18,6 +18,8 @@ public class MyThreadPool {
 //        TIDYING: 过度状态 当所有任务都结束 到达这个状态  用户可拓展(terminated()方法 空方法 业务拓展)
 //        TERMINATED: 最终状态  整个线程池关闭
 
+        System.out.println(Runtime.getRuntime().availableProcessors()); //cpu核数
+
 
     }
 }

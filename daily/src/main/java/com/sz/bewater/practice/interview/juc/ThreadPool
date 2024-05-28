@@ -1,0 +1,75 @@
+CachedThreadPool:
+public static ExecutorService newCachedThreadPool() {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                  60L, TimeUnit.SECONDS,
+                                  new SynchronousQueue<Runnable>());
+}
+特性：
+核心线程数为 0。
+最大线程数为 Integer.MAX_VALUE，即可以创建无限多的线程。
+非核心线程的空闲时间为 60 秒。
+使用 SynchronousQueue 作为阻塞队列，不存储任务。
+任务到达时优先复用空闲线程，没有空闲线程时创建新线程。
+适用于大量短期异步任务。
+命名：可复用的线程池。
+理由：由于该线程池会优先复用空闲线程，从而减少线程创建的开销，因此称其为“可复用的线程池”是非常合适的。
+
+FixedThreadPool:
+public static ExecutorService newFixedThreadPool(int nThreads) {
+    return new ThreadPoolExecutor(nThreads, nThreads,
+                                  0L, TimeUnit.MILLISECONDS,
+                                  new LinkedBlockingQueue<Runnable>());
+}
+特性：
+核心线程数和最大线程数相等，线程数固定。
+使用无界的 LinkedBlockingQueue 作为任务队列，存储等待执行的任务。
+线程数固定，所有线程都是核心线程，空闲时不会被回收。
+适用于需要限制并发线程数的场景。
+命名：固定线程数的线程池。
+理由：因为线程池中的线程数是固定的，无论有多少任务到达，线程池中的线程数都不会改变，所以称其为“固定线程数的线程池”是准确的。
+
+SingleThreadExecutor:
+public static ExecutorService newSingleThreadExecutor() {
+    return new FinalizableDelegatedExecutorService
+        (new ThreadPoolExecutor(1, 1,
+                                0L, TimeUnit.MILLISECONDS,
+                                new LinkedBlockingQueue<Runnable>()));
+}
+特性：
+核心线程数和最大线程数都为 1。
+使用无界的 LinkedBlockingQueue 作为任务队列，存储等待执行的任务。
+只有一个线程执行任务，保证任务按顺序执行。
+适用于需要顺序执行任务的场景。
+命名：单线程的线程池。
+理由：因为线程池中只有一个线程，所以称其为“单线程的线程池”是非常直观和准确的。
+
+ScheduledThreadPoolExecutor:
+ScheduledThreadPoolExecutor 是用于调度任务在给定延迟之后执行，或者周期性地执行任务的线程池。它是通过 Executors.newScheduledThreadPool(int corePoolSize) 方法创建的。
+public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
+    return new ScheduledThreadPoolExecutor(corePoolSize);
+}
+// ScheduledThreadPoolExecutor 构造方法
+public ScheduledThreadPoolExecutor(int corePoolSize) {
+    super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS, new DelayedWorkQueue());
+}
+特性:
+核心线程数：核心线程数由用户指定。这些核心线程会一直保持活动状态，无论是否有任务需要执行。
+最大线程数：最大线程数为 Integer.MAX_VALUE，意味着理论上可以创建无限多的线程。实际线程数会受到系统资源的限制。
+非核心线程：非核心线程在空闲时间为 0 毫秒，即完成任务后立即被销毁。
+任务队列：使用 DelayedWorkQueue 作为内部的延迟阻塞队列。DelayedWorkQueue 是一个专门用于调度任务的队列，与 DelayQueue 类似，但专用于 ScheduledThreadPoolExecutor。
+任务调度：提供常规的 submit 和 execute 方法提交任务，同时还提供了延迟和周期性提交任务的 API 方法，如 schedule、scheduleAtFixedRate 和 scheduleWithFixedDelay。
+延迟任务和周期任务：
+schedule：在指定延迟后执行一次任务。
+scheduleAtFixedRate：从指定延迟开始，按照固定的时间间隔重复执行任务，不管上一次任务是否完成。
+scheduleWithFixedDelay：从指定延迟开始，按照固定的时间间隔重复执行任务，每次任务执行完毕后，等待指定的时间间隔再执行下一次任务。
+适用场景
+定时任务：适用于需要在未来某个时间点执行的任务，例如定时发送邮件。
+周期性任务：适用于需要定期执行的任务，例如定时采集数据、定期备份。
+命名：调度线程池
+理由：因为 ScheduledThreadPoolExecutor 主要用于调度任务的执行，包括定时任务和周期性任务，因此称其为“调度线程池”是非常准确的。
+
+总结
+CachedThreadPool：可复用的线程池
+FixedThreadPool：固定线程数的线程池
+SingleThreadExecutor：单线程的线程池
+ScheduleThreadPool: 调度线程池
