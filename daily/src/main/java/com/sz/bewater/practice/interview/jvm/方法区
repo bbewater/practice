@@ -1,0 +1,32 @@
+方法区:
+方法区存储的主要内容
+
+1.类信息（Class Information）：
+类的全限定名（Fully Qualified Name）
+类的访问修饰符（如 public、private 等）
+父类的引用（Superclass）
+实现的接口（Interfaces）
+字段信息（Fields）
+
+2.方法信息（Methods）
+方法信息（Method Information）：
+方法的字节码（Bytecode）
+方法的访问修饰符（如 public、private 等）
+方法的返回类型和参数类型
+方法的局部变量表
+异常表
+
+3.运行时常量池（Runtime Constant Pool）：
+字面量（Literals）：字符串常量、数字常量等
+符号引用（Symbolic References）：类和方法的引用、字段的引用等
+
+4.静态变量（Static Variables）：
+类的静态字段和静态方法
+
+5.即时编译器生成的代码（JIT-Compiled Code）：
+由即时编译器（JIT Compiler）编译生成的本地代码
+
+
+方法区是一个概念 而永久代(1.7之前)和原空间(1.8之后)是方法区在不同Java版本的具体实现  线程共享
+永久代(PermGen): java7之前方法区的具体实现  位与独立于堆外的内存
+原空间(Metaspace): java8之后方法区的具体实现  位与本地内存
