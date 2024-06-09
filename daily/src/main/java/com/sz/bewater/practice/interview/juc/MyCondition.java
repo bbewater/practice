@@ -22,7 +22,7 @@ public class MyCondition {
     //补充说明
     //Condition 的实现机制：
     //
-    //Condition 是 Lock 的扩展，可以有多个条件变量，每个条件变量都有自己的等待队列。(这句是与lockSupport的关键区别  我觉得)
+    //Condition 是 Lock 的扩展，可以有多个条件变量，每个条件变量都有自己的条件队列。(这句是与lockSupport的关键区别  我觉得)
     //await 方法会自动释放锁，进入条件队列，等待 signal 或 signalAll 方法的通知。
     //signal 方法会从条件队列中唤醒一个等待线程，使其进入同步队列。
     //LockSupport 的实现机制：
