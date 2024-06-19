@@ -31,8 +31,8 @@ public class JdkProxyInvocationHandler implements InvocationHandler {
     public static void main(String[] args) {
         CommonService target = new MyDynamicTarget();
         CommonService target2 = new MyDynamicTarget2();
-        CommonService dynamicProxy = (CommonService)Proxy.newProxyInstance(target.getClass().getClassLoader(),
-                target.getClass().getInterfaces(),
+        CommonService dynamicProxy = (CommonService)Proxy.newProxyInstance(target2.getClass().getClassLoader(),
+                target2.getClass().getInterfaces(),
                 new JdkProxyInvocationHandler(target2));    //不需要一个目标类对应一个代理类了  可以多个目标类对应一个代理类
         dynamicProxy.method();
 
