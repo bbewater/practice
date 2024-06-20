@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @SpringBootTest
-public class RangeSetTest {
+public class RangeSetTestFunctionInterface {
 
 
     @Test
