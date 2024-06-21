@@ -23,6 +23,18 @@ public class TestFunctionInterface {
 //        });
 //        map.get("1").method();
 
+//        类似于创建线程 Runnable就是个函数式接口  所以下面可以用lamda表达式 表示里面的线程体 也就是run方法
+        new Thread(() -> {
+            System.out.println("do something");
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("do something");
+            }
+        });
+
 
 
     }
