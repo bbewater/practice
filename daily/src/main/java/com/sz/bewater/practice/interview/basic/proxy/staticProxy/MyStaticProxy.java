@@ -15,8 +15,8 @@ public class MyStaticProxy implements CommonService{
     }
 
     public static void main(String[] args) {
-        CommonService commonService = new MyStaticProxy(new MyStaticTarget());
-        commonService.method();
+        CommonService staticProxy = new MyStaticProxy(new MyStaticTarget());
+        staticProxy.method();
 
 
 
