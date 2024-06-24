@@ -52,6 +52,13 @@
             <version>2.0.7</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.21.0</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>
