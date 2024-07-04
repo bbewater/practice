@@ -1,9 +1,20 @@
 package com.sz.bewater.practice.interview.juc;
 
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class MyThreadPool {
+    static class MyTask implements Callable<String> {
 
 
-    public static void main(String[] args) {
+        @Override
+        public String call() throws Exception {
+            return Thread.currentThread().getName()+"-- success";
+        }
+    }
+
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         //两种提交任务的方式 execute 和 submit
         //1. execute 传的的runnable  submit 传的是 callable
         //2.execute执行其实是 runWorker方式直接调用task中的run方法 遇到异常向上抛出 当run方法结束  工作线程也就结束了
@@ -19,6 +30,25 @@ public class MyThreadPool {
 //        TERMINATED: 最终状态  整个线程池关闭
 
         System.out.println(Runtime.getRuntime().availableProcessors()); //cpu核数
+
+
+        ArrayBlockingQueue queue = new ArrayBlockingQueue<>(10);
+        AtomicInteger atomicInteger = new AtomicInteger(1);
+
+        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(
+                2,
+                3,
+                0L,
+                TimeUnit.MILLISECONDS,
+                queue,
+                r -> new Thread(r,"thread"+atomicInteger.getAndIncrement()),
+                new ThreadPoolExecutor.AbortPolicy()
+        );
+
+
+        Future<String> submit = threadPool.submit(new MyTask());
+        System.out.println(submit.get());
+        threadPool.shutdown();
 
 
     }
