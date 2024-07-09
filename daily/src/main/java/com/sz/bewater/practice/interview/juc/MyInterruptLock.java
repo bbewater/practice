@@ -8,9 +8,10 @@ public class MyInterruptLock {
     private static final ReentrantLock lock = new ReentrantLock();
     private static Thread thread2;
 
-    //lock相较于synchronized，lock可以中断获取锁(等待获取锁的时候被中断)，而synchronized不行
+    //lock相较于synchronized，lock可以中断获取锁(等待获取锁的时候被中断)，而synchronized不行(会被阻塞至获取到锁为止)
 //    lock.lockInterruptibly();   表示我这次获取锁的行为可被中断  搭配thread.interrupt使用   避免线程长时间阻塞 可以去处理别的任务
 
+//    ps:获取到锁之后的线程调用interrupt方法不会立即被中断。通常讨论可不可被中断是指线程在尝试获取锁时能否响应中断请求
 
     public static void main(String[] args) {
         Thread thread1 = new Thread(() -> {
