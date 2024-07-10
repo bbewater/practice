@@ -16,7 +16,7 @@ public class MyCallableThread implements Callable {
         Thread callThread = new Thread(futureTask);
         callThread.start();
 //        使用futureTask.get()获取返回值
-        String returnMsg = futureTask.get();
+        String returnMsg = futureTask.get(); //会阻塞
         System.out.println(returnMsg);
 
         ExecutorService threadPool = Executors.newFixedThreadPool(2);
