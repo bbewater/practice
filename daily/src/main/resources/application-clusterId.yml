@@ -42,7 +42,7 @@ spring:
           t_user:
             actual-data-nodes: user.t_user    #由数据源名 + 表名组成（参考 Inline 语法规则）
           t_order:
-            #            order0.t_order,order1.t_order,order2.t_order,order3.t_order
+#            order0.t_order,order1.t_order,order2.t_order,order3.t_order
             actual-data-nodes: order$->{0..3}.t_order   #或者是order${[0,1,2,3]}.t_order  inline表达式 行表达式
             database-strategy:    ## 分库策略，缺省表示使用默认分库策略，以下的分片策略只能选其一
               standard:       # 用于单分片键的标准分片场景
@@ -60,9 +60,6 @@ spring:
           MykeyAlg:
             type: SNOWFLAKE # 分布式序列算法类型 雪花算法 有序   UUID无序  不适合
             props:  # 分布式序列算法属性配置
-        broadcast-tables:   #广播表规则列表  可以配置多个
-          table1: t_saller
-
 
 
 

@@ -1,0 +1,44 @@
+server:
+  port: 8088
+spring:
+  shardingsphere:
+    mode:
+      type: Memory   #内存模式
+    datasource:
+      names: master,slave1,slave2   #配置三个数据源
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.220.128:3306/db_user?allowPublicKeyRetrieval=true
+        username: root
+        password: bewater
+      slave1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.220.128:3307/db_user?allowPublicKeyRetrieval=true
+        username: root
+        password: bewater
+      slave2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.220.128:3308/db_user?allowPublicKeyRetrieval=true
+        username: root
+        password: bewater
+    rules:
+      readwrite-splitting:
+        data-sources:
+          myds:     #读写分离逻辑数据源名称
+            type: Static    #读写分离类型 比如说Static Dynamic
+            props:
+#              auto-aware-data-source-name:       读写分离类型是dynamic时才会配置
+              write-data-source-name: master
+              read-data-source-names: slave1,slave2
+            load-balancer-name: mylb #负载均衡算法名称
+        load-balancers:
+          mylb:       #负载均衡算法名称 自定义
+            type:  WEIGHT  #ROUND_ROBIN(轮询)、RANDOM(随机)、WEIGHT(权重)
+            props:
+              slave1: 1
+              slave2: 5
+    props:
+      sql-show: true  #	是否在日志中打印 SQL 打印 SQL 可以帮助开发者快速定位系统问题。日志内容包含：逻辑 SQL，真实 SQL 和 SQL 解析结果。 如果开启配置，日志将使用 Topic ShardingSphere-SQL，日志级别是 INFO
