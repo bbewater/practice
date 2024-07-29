@@ -1,70 +1,70 @@
 server:
   port: 8088
-spring:
-  shardingsphere:
-    mode:
-      type: Memory   #内存模式
-    datasource:
-      names: user,order0,order1,order2,order3
-      user:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql://192.168.220.128:3301/db_user?allowPublicKeyRetrieval=true
-        username: root
-        password: bewater
-      order0:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql://192.168.220.128:3302/db_order?allowPublicKeyRetrieval=true
-        username: root
-        password: bewater
-      order1:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql://192.168.220.128:3303/db_order?allowPublicKeyRetrieval=true
-        username: root
-        password: bewater
-      order2:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql://192.168.220.129:3302/db_order?allowPublicKeyRetrieval=true
-        username: root
-        password: bewater
-      order3:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql://192.168.220.129:3303/db_order?allowPublicKeyRetrieval=true
-        username: root
-        password: bewater
-    rules:
-      sharding:
-        tables:
-          t_user:
-            actual-data-nodes: user.t_user    #由数据源名 + 表名组成（参考 Inline 语法规则）
-          t_order:
-            #            order0.t_order,order1.t_order,order2.t_order,order3.t_order
-            actual-data-nodes: order$->{0..3}.t_order   #或者是order${[0,1,2,3]}.t_order  inline表达式 行表达式
-            database-strategy:    ## 分库策略，缺省表示使用默认分库策略，以下的分片策略只能选其一
-              standard:       # 用于单分片键的标准分片场景
-                sharding-column: user_id   # 分片列名称
-                sharding-algorithm-name: myMod # 分片算法名称
-            key-generate-strategy:
-              column: id  # 自增列名称，缺省表示不使用自增主键生成器
-              key-generator-name: MykeyAlg # 分布式序列算法名称
-        sharding-algorithms:
-          myMod:
-            type: MOD   #取模分片算法
-            props:
-              sharding-count: 4   #分片数量
-        key-generators:
-          MykeyAlg:
-            type: SNOWFLAKE # 分布式序列算法类型 雪花算法 有序   UUID无序  不适合
-            props:  # 分布式序列算法属性配置
-        broadcast-tables:   #广播表规则列表  可以配置多个
-          table1: t_saller
-
-
-
-
-    props:
-      sql-show: true  #	是否在日志中打印 SQL 打印 SQL 可以帮助开发者快速定位系统问题。日志内容包含：逻辑 SQL，真实 SQL 和 SQL 解析结果。 如果开启配置，日志将使用 Topic ShardingSphere-SQL，日志级别是 INFO
+#spring:
+#  shardingsphere:
+#    mode:
+#      type: Memory   #内存模式
+#    datasource:
+#      names: user,order0,order1,order2,order3
+#      user:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://192.168.220.128:3301/db_user?allowPublicKeyRetrieval=true
+#        username: root
+#        password: bewater
+#      order0:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://192.168.220.128:3302/db_order?allowPublicKeyRetrieval=true
+#        username: root
+#        password: bewater
+#      order1:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://192.168.220.128:3303/db_order?allowPublicKeyRetrieval=true
+#        username: root
+#        password: bewater
+#      order2:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://192.168.220.129:3302/db_order?allowPublicKeyRetrieval=true
+#        username: root
+#        password: bewater
+#      order3:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://192.168.220.129:3303/db_order?allowPublicKeyRetrieval=true
+#        username: root
+#        password: bewater
+#    rules:
+#      sharding:
+#        tables:
+#          t_user:
+#            actual-data-nodes: user.t_user    #由数据源名 + 表名组成（参考 Inline 语法规则）
+#          t_order:
+#            #            order0.t_order,order1.t_order,order2.t_order,order3.t_order
+#            actual-data-nodes: order$->{0..3}.t_order   #或者是order${[0,1,2,3]}.t_order  inline表达式 行表达式
+#            database-strategy:    ## 分库策略，缺省表示使用默认分库策略，以下的分片策略只能选其一
+#              standard:       # 用于单分片键的标准分片场景
+#                sharding-column: user_id   # 分片列名称
+#                sharding-algorithm-name: myMod # 分片算法名称
+#            key-generate-strategy:
+#              column: id  # 自增列名称，缺省表示不使用自增主键生成器
+#              key-generator-name: MykeyAlg # 分布式序列算法名称
+#        sharding-algorithms:
+#          myMod:
+#            type: MOD   #取模分片算法
+#            props:
+#              sharding-count: 4   #分片数量
+#        key-generators:
+#          MykeyAlg:
+#            type: SNOWFLAKE # 分布式序列算法类型 雪花算法 有序   UUID无序  不适合
+#            props:  # 分布式序列算法属性配置
+#        broadcast-tables:   #广播表规则列表  可以配置多个
+#          table1: t_saller
+#
+#
+#
+#
+#    props:
+#      sql-show: true  #	是否在日志中打印 SQL 打印 SQL 可以帮助开发者快速定位系统问题。日志内容包含：逻辑 SQL，真实 SQL 和 SQL 解析结果。 如果开启配置，日志将使用 Topic ShardingSphere-SQL，日志级别是 INFO
