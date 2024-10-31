@@ -20,7 +20,7 @@ public class MyBean implements BeanNameAware, BeanFactoryAware,ApplicationContex
     private String name;
 
     public MyBean() {
-        System.out.println("构造方法invoking");
+        System.out.println("构造方法invoking"); //    构造方法注入
     }
 
     public String getName() {
