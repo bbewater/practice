@@ -34,6 +34,7 @@ public class MyBlockingQueueApi {
         System.out.println("Took: " + element);
 
         // 使用 poll 方法移除元素（非阻塞操作）
+        //peek操作是查看队列中的下一个元素 和poll的区别是在于要不要取出这个元素 peek仅仅是查看 而poll是取出
         element = queue.poll();
         System.out.println("Polled: " + element);
 
