@@ -34,6 +34,7 @@ public class RedisDistributedLock {
     private static RLock lock;
 
     static{
+        //类的静态代码块是在类被加载到jvm的时候执行的(类加载中的初始化阶段) 且只执行一次
         Config config = new Config();
         config.useSingleServer().setAddress("redis://127.0.0.1:6379");
         RedissonClient redissonClient = Redisson.create();
