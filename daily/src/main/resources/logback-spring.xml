@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 配置一个控制台输出 Appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- 输出格式：时间 - 级别 - 线程 - 日志信息 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 设置根日志级别和输出位置 -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+    <logger name="org.apache.kafka.clients" level="info" />
+</configuration>
+
+<!--注意: logback-spring.xml相较于logback.xml更好的和spring框架搭配使用
+    确保 logback-spring.xml 至少有一个 appender 和一个 root 配置。
+    可以认为root是全局日志级别的配置 而我们可以在yml文件中通过logging.level.包名 对某一个应用包日志自定义的日志级别输出-->
