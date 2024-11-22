@@ -1,6 +1,4 @@
-package com.sz.bewater.practice.interview.juc;
-
-import org.checkerframework.checker.optional.qual.Present;
+package com.sz.bewater.practice.interview.juc.CompletableFuture;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -24,7 +22,7 @@ public class CompletableFutureTest {
         //thenAccept 异步任务成功后 对结果进行消费 无返回值 侧重于消费
         CompletableFuture<Void> thenAccept = supplyAsync.thenAccept(res -> System.out.println(res+" thenAccept 消费"));
 
-        
+
         //thenApply 异步任务成功后 对结果进行处理 有返回值 可返回与原返回值不同类型的返回值 侧重于转换处理
         CompletableFuture<Integer> integerCompletableFuture = supplyAsync.thenApply(Integer::parseInt);
 
