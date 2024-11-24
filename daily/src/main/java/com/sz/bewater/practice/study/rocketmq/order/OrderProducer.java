@@ -24,16 +24,21 @@ public class OrderProducer {
             Message message = new Message("order_topic", "order_tag", ("hi" + i).getBytes());
             String OrderId = "Order_Bewater_001";
             message.setKeys(OrderId);
-            producer.send(message, new MessageQueueSelector() {
-
-                //queue的选择算法  send方法中的第三个参数=select方法里的第三个参数Object arg
-                @Override
-                public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
-                    String orderId = (String) arg;
-                    int hash = orderId.hashCode();
-                    return mqs.get(hash % mqs.size());
-                }
+            producer.send(message, (mqs, msg, arg) -> {
+                String orderId = (String) arg;
+                int hash = orderId.hashCode();
+                return mqs.get(hash % mqs.size());
             },OrderId);
+//            producer.send(message, new MessageQueueSelector() {
+//
+//                //queue的选择算法  send方法中的第三个参数=select方法里的第三个参数Object arg
+//                @Override
+//                public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
+//                    String orderId = (String) arg;
+//                    int hash = orderId.hashCode();
+//                    return mqs.get(hash % mqs.size());
+//                }
+//            },OrderId);
         }
         producer.shutdown();
 

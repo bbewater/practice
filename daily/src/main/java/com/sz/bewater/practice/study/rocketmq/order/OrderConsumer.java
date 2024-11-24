@@ -24,13 +24,17 @@ public class OrderConsumer {
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         // TODO: 2024/7/20 配置消费者消费类型 默认是集群消费
         consumer.setMessageModel(MessageModel.CLUSTERING);
-        consumer.setMessageListener(new MessageListenerOrderly() {
-            @Override
-            public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgs, ConsumeOrderlyContext context) {
-                msgs.forEach(item -> System.out.println(new String(item.getBody())));
-                return ConsumeOrderlyStatus.SUCCESS;
-            }
+        consumer.setMessageListener((MessageListenerOrderly) (msgs,context) -> {
+            msgs.forEach(item -> System.out.println(new String(item.getBody())));
+            return ConsumeOrderlyStatus.SUCCESS;
         });
+//        consumer.setMessageListener(new MessageListenerOrderly() {
+//            @Override
+//            public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgs, ConsumeOrderlyContext context) {
+//                msgs.forEach(item -> System.out.println(new String(item.getBody())));
+//                return ConsumeOrderlyStatus.SUCCESS;
+//            }
+//        });
         consumer.start();
         System.out.println("生产者"+consumer.getClientIP()+"启动");
 
