@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Person implements Cloneable{
     private String name;
+    private Integer age;
     private Address address;
 
     @Override
