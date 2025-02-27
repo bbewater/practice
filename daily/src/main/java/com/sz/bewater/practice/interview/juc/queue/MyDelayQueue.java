@@ -1,4 +1,4 @@
-package com.sz.bewater.practice.interview.juc;
+package com.sz.bewater.practice.interview.juc.queue;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;

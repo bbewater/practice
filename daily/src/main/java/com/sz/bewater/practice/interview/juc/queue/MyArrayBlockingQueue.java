@@ -1,19 +1,23 @@
-package com.sz.bewater.practice.interview.juc;
+package com.sz.bewater.practice.interview.juc.queue;
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-public class MyLinkedBlockingQueue {
-//    底层为链表的可有界可无界的阻塞队列
-    //不传容量则为无界的 传则跟ArrayBlockingQueue一样是有界的阻塞队列
-    private static final BlockingQueue<Integer> linkedBlockingQueue = new LinkedBlockingQueue<>(5);
+public class MyArrayBlockingQueue {
+//    底层为数组的有界队列
+//    阻塞发生在两个地方 put和take  当阻塞队列已满  put会被阻塞 直到阻塞队列元素减少
+//    当阻塞队列为空 take会被阻塞  直到阻塞队列有了新元素
+
+//    阻塞队列常用于生产者和消费者模型  阻塞队列正好是生产者存放元素  消费者消费元素的容器
+    private static final BlockingQueue<Integer> arrayBlockingQueue = new ArrayBlockingQueue<>(5);
+
 
     public static void main(String[] args) {
         new Thread(() -> {
             for (int i = 0; i < 10; i++) {
                 try {
-                    linkedBlockingQueue.put(i);
+                    arrayBlockingQueue.put(i);
                     System.out.println("producer is create item:"+(i+1));
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -30,7 +34,7 @@ public class MyLinkedBlockingQueue {
             }
             while(true){
                 try {
-                    Integer item = linkedBlockingQueue.take();
+                    Integer item = arrayBlockingQueue.take();
                     System.out.println("consumer is consume item:"+(item+1));
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -46,5 +50,6 @@ public class MyLinkedBlockingQueue {
 
 
     }
+
 
 }
