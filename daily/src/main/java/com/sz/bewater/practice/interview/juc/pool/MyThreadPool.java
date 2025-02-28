@@ -1,4 +1,4 @@
-package com.sz.bewater.practice.interview.juc;
+package com.sz.bewater.practice.interview.juc.pool;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -43,7 +43,12 @@ public class MyThreadPool {
                 queue,
                 r -> new Thread(r,"thread"+atomicInteger.getAndIncrement()),
                 new ThreadPoolExecutor.AbortPolicy()
-        );
+        ){
+            @Override
+            protected void terminated() {
+                System.out.println("terminated");
+            }
+        };
 
 
         Future<String> submit = threadPool.submit(new MyTask());
