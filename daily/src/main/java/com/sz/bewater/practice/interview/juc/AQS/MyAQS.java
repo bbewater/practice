@@ -1,6 +1,4 @@
-package com.sz.bewater.practice.interview.juc;
-
-import java.util.concurrent.locks.ReentrantLock;
+package com.sz.bewater.practice.interview.juc.AQS;
 
 public class MyAQS {
 

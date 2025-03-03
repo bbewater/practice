@@ -1,4 +1,4 @@
-package com.sz.bewater.practice.interview.juc;
+package com.sz.bewater.practice.interview.juc.AQS;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
