@@ -49,8 +49,8 @@ public class BloomFilter {
         sampleBloomFilter.tryInit(10000L,0.01);
         sampleBloomFilter.add("key1");  //添加缓存中存在的key1、key2 我这里简单的通过两个add完成布隆过滤器的初始化
         sampleBloomFilter.add("key2");
-        System.out.println("contains key1 :"+sampleBloomFilter.contains("item1"));
-        System.out.println("contains key2 :"+sampleBloomFilter.contains("item2"));
+        System.out.println("contains key1 :"+sampleBloomFilter.contains("key1"));
+        System.out.println("contains key2 :"+sampleBloomFilter.contains("key2"));
 
 
     }
