@@ -19,6 +19,10 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
         if (beanName.equals("myBean")){
             System.out.println("postProcessBeforeInitialization invoking");
         }
+        if (beanName.equals("mySpringBean")){
+            System.out.println("postProcessBeforeInitialization invoking");
+        }
+
         return bean;
     }
 
@@ -59,6 +63,9 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
 //            });
 //            proxy.method();
 //            return proxy;
+        }
+        if (beanName.equals("mySpringBean")){
+            System.out.println("postProcessAfterInitialization invoking");
         }
         return bean;
     }
