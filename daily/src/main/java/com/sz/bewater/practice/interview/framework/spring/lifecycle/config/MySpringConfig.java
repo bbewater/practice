@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan("com.sz.bewater.practice.interview.framework.spring.lifecycle.spring")
+@ComponentScan("com.sz.bewater.practice.interview.framework.spring")
 @EnableTransactionManagement // 显式启用事务管理 SpringBoot不需要开发手动加该注解由于自动配置 只需要引入starter-jdbc 然后配置数据库连接即可  下面的事务管理器也不需要自己配置
 public class MySpringConfig {
 

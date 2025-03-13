@@ -69,3 +69,4 @@ server:
 #    props:
 #      sql-show: true  #	是否在日志中打印 SQL 打印 SQL 可以帮助开发者快速定位系统问题。日志内容包含：逻辑 SQL，真实 SQL 和 SQL 解析结果。 如果开启配置，日志将使用 Topic ShardingSphere-SQL，日志级别是 INFO
 provinceCode: 50
+serviceType: user
