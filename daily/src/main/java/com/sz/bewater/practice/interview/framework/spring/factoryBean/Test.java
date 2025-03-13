@@ -1,6 +1,8 @@
 package com.sz.bewater.practice.interview.framework.spring.factoryBean;
 
 import com.sz.bewater.practice.interview.framework.spring.lifecycle.config.MySpringConfig;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -14,10 +16,12 @@ public class Test {
 //        这里利用FactoryBean根据不同的需要创建不同的bean
 
         ApplicationContext context = new AnnotationConfigApplicationContext(MySpringConfig.class);
-        //Object myFactoryBean = context.getBean("myFactoryBean");    //UserService@2096
+//        Object myFactoryBean = context.getBean("myFactoryBean");    //UserService@2096
         //通过容器获取FactoryBean其实是获取到其中getObject方法返回的bean类型
         //若要是想要获取FactoryBean则需要这样去获取
         context.getBean("&myFactoryBean");  //MyFactoryBean@2094
+
+
 
     }
 }
