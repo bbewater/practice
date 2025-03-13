@@ -26,7 +26,7 @@ public class Test {
         //通过容器获取FactoryBean其实是获取到其中getObject方法返回的bean类型
         //若要是想要获取FactoryBean则需要这样去获取
 //        context.getBean("&myFactoryBean");  //MyFactoryBean@2094
-//        context.getBean("userService"); //会报错No bean named 'userService' available 这是因为在 Spring 容器中的 Bean 名称是 myFactoryBean（即 FactoryBean 的名称），而非 userService
+//        context.getBean("userService"); //会报错No bean named 'userService' available 这是因为在 Spring 容器中的 BeanName 仍是 myFactoryBean（即 FactoryBean 的名称），而非 userService 只是类型是UserService
 
         //ApplicationContext在容器启动的时候就完成了bean的实例化及初始化
         //对于BeanFactory的延迟初始化(实例化)
