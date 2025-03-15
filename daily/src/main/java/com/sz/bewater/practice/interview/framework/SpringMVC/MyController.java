@@ -76,9 +76,8 @@ public class MyController {
      * 其中包含了处理器和相关的拦截器列表
      * 然后调用'getHandlerAdapter'方法 传入 Handler 找到其对应的处理器适配器 HandlerAdapter
      * preHandler(有拦截器的话)
-     * 适配器调用 handle 方法
+     * 适配器调用 handle 方法 返回 ModelAndView
      * postHandler(有拦截器的话)
-     * 返回 ModelAndView
      * 视图解析器 渲染视图
      * afterCompletion(有拦截器的话)
      */
