@@ -4,8 +4,10 @@ public class MyOperator {
 
 //    &位与运算  当两个操作数的对应位都为 1 时，结果位才为 1，否则结果位为 0。 同为1则为1  否则为0
 //    |位或运算  有1则1 无1则0
-//    %取模   取余数
 //    ^异或   不同则为1  相同为0
+
+//    %取余   取余操作返回两个整数相除的余数 结果符号还被除数保持一致
+//    Math.floorMod(int x,int y) 和取余 % 一样 但是结果的符号和除数一致
 
 //    素数(质数)  除了1和它本身 无其他公约数 如2 3 5 7
 //    合数  除了1和他本身 还有其他公约数   如4 6
@@ -25,6 +27,9 @@ public class MyOperator {
 //        hash&length-1
         System.out.println(5%16);   //5
         System.out.println(5&15);   //1111  0101    0101  5
+        System.out.println("取余:"+ -5 % 2);  //-1
+        System.out.println("取模:"+Math.floorMod(-5,2));  //1
+
 
     }
 }
