@@ -27,8 +27,10 @@ public class MyOperator {
 //        hash&length-1
         System.out.println(5%16);   //5
         System.out.println(5&15);   //1111  0101    0101  5
-        System.out.println("取余:"+ -5 % 2);  //-1
+        System.out.println("取余:"+ -5 % 2);  //-1 即-5 - (-2*2) = -1  往 0 取整
         System.out.println("取模:"+Math.floorMod(-5,2));  //1
+        System.out.println("取模:"+Math.floorMod(-7,3));  //2
+        //-2.33 往-♾️取整 就是-3 则结果= -7 - (-3*3) = 2
 
 
     }
