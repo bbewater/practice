@@ -26,7 +26,7 @@ public class OrderConsumer {
         consumer.setMessageModel(MessageModel.CLUSTERING);
         consumer.setMessageListener((MessageListenerOrderly) (msgs,context) -> {
             msgs.forEach(item -> System.out.println(new String(item.getBody())));
-            return ConsumeOrderlyStatus.SUCCESS;
+            return ConsumeOrderlyStatus.SUCCESS;    //要想实现顺序消息的话 消费者不能并发消费->MessageListenerConcurrently
         });
 //        consumer.setMessageListener(new MessageListenerOrderly() {
 //            @Override
