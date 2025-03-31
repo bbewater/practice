@@ -32,6 +32,10 @@ public class FilterConsumer {
                     System.out.println(Thread.currentThread().getName()+"-- msg is =="+msg);
 
                 }
+                // 手动提交当前批次的 Offset（需计算最新 Offset）
+//                long offset = msgs.get(msgs.size() - 1).getQueueOffset() + 1;
+//                consumer.getDefaultMQPushConsumerImpl().getOffsetStore()
+//                        .updateOffset(context.getMessageQueue(), offset, true);
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });
