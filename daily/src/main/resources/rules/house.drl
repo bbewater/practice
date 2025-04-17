@@ -1,0 +1,61 @@
+// house.drl
+import com.sz.bewater.practice.study.drools.House
+import java.util.ArrayList
+import java.util.List
+import java.util.Collections
+import cn.hutool.core.util.ObjectUtil;
+
+global java.util.Map ruleHitMap;
+
+rule "机房名称不能为空"
+    agenda-group "house-check"
+when
+    $r : House(houseName == null || houseName.trim() == "")
+then
+    List<Integer> nameEmptyList = (List<Integer>)ruleHitMap.get("机房名称不能为空");
+    if (ObjectUtil.isEmpty(nameEmptyList)){
+        nameEmptyList = new ArrayList<>();
+    }
+    nameEmptyList.add($r.getId());
+    ruleHitMap.put("机房名称不能为空",nameEmptyList);
+
+end
+
+rule "机房名称不能包含特殊字符"
+    agenda-group "house-check"
+when
+    $r : House(houseName matches ".*[^a-zA-Z0-9\\u4e00-\\u9fa5\\s_-].*")
+then
+    List<Integer> nameSpList = (List<Integer>)ruleHitMap.get("机房名称不能包含特殊字符");
+        if (ObjectUtil.isEmpty(nameSpList)){
+            nameSpList = new ArrayList<>();
+        }
+        nameSpList.add($r.getId());
+        ruleHitMap.put("机房名称不能包含特殊字符",nameSpList);
+end
+
+rule "机房名称长度不能超过10"
+    agenda-group "house-check"
+when
+    $r : House(houseName != null && houseName.length() > 10)
+then
+    List<Integer> name2LongList = (List<Integer>)ruleHitMap.get("机房名称长度不能超过10");
+            if (ObjectUtil.isEmpty(name2LongList)){
+                name2LongList = new ArrayList<>();
+            }
+            name2LongList.add($r.getId());
+            ruleHitMap.put("机房名称长度不能超过10",name2LongList);
+end
+
+rule "机房包含ip数量不能超过10个"
+    agenda-group "house-check"
+when
+    $r : House( hasIpCount != null && hasIpCount > 10)
+then
+    List<Integer> ip2Much = (List<Integer>)ruleHitMap.get("机房包含ip数量不能超过10个");
+                if (ObjectUtil.isEmpty(ip2Much)){
+                    ip2Much = new ArrayList<>();
+                }
+                ip2Much.add($r.getId());
+                ruleHitMap.put("机房包含ip数量不能超过10个",ip2Much);
+end

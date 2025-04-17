@@ -1,0 +1,36 @@
+// house.drl
+import com.sz.bewater.practice.study.drools.User
+import java.util.List
+import cn.hutool.core.util.ObjectUtil
+import java.util.ArrayList;
+
+global java.util.Map ruleHitMap
+
+rule "用户名称不能为空"
+    agenda-group "user-check"
+when
+    $r : User(userName == null || userName.trim() == "")
+then
+    List<Integer> nameEmptyList = (List<Integer>)ruleHitMap.get("用户名称不能为空");
+            if (ObjectUtil.isEmpty(nameEmptyList)){
+                nameEmptyList = new ArrayList<>();
+            }
+            nameEmptyList.add($r.getId());
+            ruleHitMap.put("用户名称不能为空",nameEmptyList);
+end
+
+
+
+rule "用户手机号码长度不能超过11"
+    agenda-group "user-check"
+when
+    $r :  User(telNumber != null && telNumber.length() > 11)
+then
+    List<Integer> telList = (List<Integer>)ruleHitMap.get("用户手机号码长度不能超过11");
+            if (ObjectUtil.isEmpty(telList)){
+                telList = new ArrayList<>();
+            }
+            telList.add($r.getId());
+            ruleHitMap.put("用户手机号码长度不能超过11",telList);
+end
+
