@@ -140,6 +140,22 @@
             <version>7.74.0.Final</version>
         </dependency>
 
+        <!-- XXL-JOB 核心（建议2.3.0+） -->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-batch</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-core</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
