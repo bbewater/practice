@@ -9,7 +9,10 @@ public class SichuanBusiness extends ProvinceTemplate{
 
     @Override
     public void specialBusiness() {
-        templateMethod();
         System.out.println("四川特有逻辑");
+    }
+
+    public void doBusiness(){
+        templateMethod();
     }
 }

@@ -8,12 +8,11 @@ import org.springframework.stereotype.Component;
 public class YunNanBusiness extends ProvinceTemplate{
     @Override
     public void specialBusiness() {
-        templateMethod();
         System.out.println("云南特有业务逻辑");
     }
 
-    @Override
-    public void ynSpe() {
-        System.out.println("云南插入的一些业务逻辑");
+    public void doBusiness(){
+        templateMethod();
     }
+
 }

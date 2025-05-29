@@ -6,7 +6,7 @@ public abstract class ProvinceTemplate{
 
     public final void  templateMethod(){
         check();
-        ynSpe();
+        specialBusiness();
         commonBusiness();
     }
 
@@ -21,7 +21,4 @@ public abstract class ProvinceTemplate{
 
     public abstract void specialBusiness();
 
-    public void ynSpe(){
-
-    }
 }

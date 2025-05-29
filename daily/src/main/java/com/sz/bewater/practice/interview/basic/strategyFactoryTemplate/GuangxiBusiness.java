@@ -9,7 +9,10 @@ public class GuangxiBusiness extends ProvinceTemplate{
 
     @Override
     public void specialBusiness() {
-        templateMethod();
         System.out.println("广西特有业务逻辑");
+    }
+
+    public void doBusiness(){
+        templateMethod();
     }
 }
