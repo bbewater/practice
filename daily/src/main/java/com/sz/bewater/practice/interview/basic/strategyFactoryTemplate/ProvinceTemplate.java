@@ -19,6 +19,8 @@ public abstract class ProvinceTemplate{
         System.out.println("公共的业务逻辑");
     }
 
-    public abstract void specialBusiness();
+    protected void specialBusiness(){
+        throw new UnsupportedOperationException("子类自选实现");
+    }
 
 }

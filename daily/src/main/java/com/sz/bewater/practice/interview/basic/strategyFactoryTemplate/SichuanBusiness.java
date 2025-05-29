@@ -12,7 +12,4 @@ public class SichuanBusiness extends ProvinceTemplate{
         System.out.println("四川特有逻辑");
     }
 
-    public void doBusiness(){
-        templateMethod();
-    }
 }

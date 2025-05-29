@@ -22,7 +22,7 @@ public class MyBLock {
                 return true;
             }
             if (state > 0 && getExclusiveOwnerThread() == Thread.currentThread()) {//可重入
-                setState(state + 1);
+                setState(state + arg);
                 return true;
             }
             return false;

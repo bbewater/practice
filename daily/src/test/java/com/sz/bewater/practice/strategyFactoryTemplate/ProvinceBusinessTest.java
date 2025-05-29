@@ -4,15 +4,17 @@ import com.sz.bewater.practice.interview.basic.strategyFactoryTemplate.ProvinceT
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootTest
 public class ProvinceBusinessTest {
     @Autowired
-    private ProvinceTemplate template;
+    private ApplicationContext applicationContext;
 
     @Test
     public void test(){
-        template.specialBusiness();
+        ProvinceTemplate template = applicationContext.getBean(ProvinceTemplate.class);
+        template.templateMethod();
     }
 
 

@@ -11,8 +11,5 @@ public class YunNanBusiness extends ProvinceTemplate{
         System.out.println("云南特有业务逻辑");
     }
 
-    public void doBusiness(){
-        templateMethod();
-    }
 
 }

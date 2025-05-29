@@ -27,7 +27,7 @@ public class MySpringConfig {
         return dataSource;
     }
 
-    @Bean
+    @Bean(name = "myCustomerTx")
     public PlatformTransactionManager transactionManager(DataSource dataSource) { //配置事务管理器
         return new DataSourceTransactionManager(dataSource);
     }
